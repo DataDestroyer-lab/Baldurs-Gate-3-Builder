@@ -6,7 +6,7 @@
 This tool allows players to plan their Level 1 characters with 100% wiki-accurate data, including all races, subraces, classes, subclasses, backgrounds, and point-buy stats. It features a high-contrast, large-print UI for accessibility and includes an embedded music player for immersion.
 
 ## 🔗 Live Demo
-[**Click here to use the Builder**](https://datadestroyer-lab.github.io/Baldurs-Gate-3-Builder/)  
+[**Click here to use the Builder**](https://datadestroyer-lab.github.io/THE-BENDERS-BIBLE/)  
 
 ## ✨ Features
 
