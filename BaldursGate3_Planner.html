@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noai, noimageai">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baldur's Gate 3 Builder - Large Print</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lato:wght@400;700&display=swap');
+
+        /* --- GLOBAL SIZING INCREASES --- */
+        body {
+            background-color: #050505;
+            color: #dcdcdc;
+            font-family: 'Cinzel', serif;
+            margin: 0; 
+            padding: 30px; /* More outer space */
+            display: flex; 
+            justify-content: center;
+            min-height: 100vh;
+            font-size: 18px; /* Base font size increased */
+        }
+
+        .container {
+            width: 100%; 
+            max-width: 1200px; /* Wider container */
+            background: rgba(20, 20, 20, 0.95);
+            border: 3px solid #9a845f; /* Thicker border */
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
+            padding: 35px; /* More inner spacing */
+            border-radius: 8px;
+        }
+
+        /* HEADER */
+        .header-row {
+            display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 3px solid #444; padding-bottom: 20px; margin-bottom: 30px;
+        }
+        h1 { color: #cbb485; margin: 0; font-size: 36px; text-shadow: 3px 3px 6px #000; } /* Much bigger title */
+        
+        .music-btn {
+            background: #2a221b; border: 2px solid #cbb485; color: #cbb485;
+            padding: 12px 24px; /* Larger button */
+            cursor: pointer; font-family: 'Cinzel', serif; transition: 0.3s;
+            font-size: 16px; font-weight: bold;
+        }
+        .music-btn:hover, .music-active { background: #cbb485; color: #111; box-shadow: 0 0 15px #cbb485; }
+
+        /* GRID SYSTEM & SECTIONS */
+        .section { 
+            background: rgba(255, 255, 255, 0.02); 
+            padding: 25px; /* Larger section padding */
+            margin-bottom: 25px; 
+            border: 2px solid #333; 
+        }
+        .row { display: flex; gap: 30px; flex-wrap: wrap; } /* Larger gaps */
+        .col { flex: 1; min-width: 280px; } /* Wider minimum columns so they wrap sooner on small screens */
+        .col-wide { flex: 2; min-width: 300px; }
+
+        /* INPUTS & LABELS */
+        label { 
+            display: block; color: #aaa; 
+            font-size: 16px; /* Larger labels */
+            font-family: 'Lato', sans-serif; margin-bottom: 8px; font-weight: bold;
+        }
+        select { 
+            width: 100%; 
+            padding: 12px 15px; /* Bigger touch targets */
+            background: #111; color: #fff; 
+            border: 2px solid #555; 
+            font-family: 'Lato', sans-serif; margin-bottom: 15px; 
+            font-size: 16px; /* Larger input text */
+        }
+        select:focus { border-color: #cbb485; outline: none; }
+
+        /* DYNAMIC SELECTIONS (Tags) */
+        .tag-container { display: flex; flex-wrap: wrap; gap: 10px; } /* Larger gaps */
+        .tag { 
+            background: #222; border: 2px solid #444; 
+            padding: 8px 16px; /* Much larger click areas */
+            font-size: 15px; /* Readable text */
+            font-family: 'Lato', sans-serif; cursor: pointer;
+            transition: 0.2s;
+        }
+        .tag:hover { border-color: #888; }
+        .tag.selected { background: #cbb485; color: #000; border-color: #cbb485; font-weight: bold;}
+        .tag.disabled { opacity: 0.6; cursor: not-allowed; background: #1a1a1a; font-style: italic;}
+
+        /* STATS CALCULATOR */
+        .stat-row { 
+            display: flex; justify-content: space-between; align-items: center; 
+            background: #1a1a1a; padding: 10px 15px; /* Bigger row spacing */
+            margin-bottom: 10px; border: 2px solid #333; 
+        }
+        /* The stat label (STR, DEX...) */
+        .stat-row span:first-child { font-size: 16px !important; font-weight: bold; }
+        /* The +/- modifier */
+        .stat-row span:last-child { font-size: 16px !important; font-weight: bold; }
+
+        .stat-val { font-weight: bold; color: #fff; width: 40px; text-align: center; font-size: 22px; }
+        .btn-stat { 
+            width: 35px; height: 35px; /* Much larger buttons */
+            background: #333; color: #fff; border: 2px solid #555; 
+            cursor: pointer; font-size: 20px; font-weight: bold;
+            display:flex; align-items:center; justify-content:center;
+        }
+        .btn-stat:hover { background: #555; border-color: #cbb485; }
+
+        /* SUMMARY PANEL */
+        #summary-panel { background: #15100d; border: 3px solid #6e5a3e; padding: 30px; }
+        .summary-header { 
+            border-bottom: 3px solid #444; padding-bottom: 15px; margin-bottom: 20px; 
+            font-size: 28px; /* Bigger Header */
+            color: #cbb485; font-weight: bold;
+        }
+        .detail-item { 
+            font-family: 'Lato', sans-serif; 
+            font-size: 18px; /* Bigger detail text */
+            margin-bottom: 10px; color: #ccc; 
+            line-height: 1.4;
+        }
+        .hl { color: #cbb485; font-weight: bold; }
+        .prof { color: #00ffff; }
+
+        /* FOOTER */
+        .footer { 
+            text-align: center; margin-top: 30px; 
+            font-size: 16px; /* Bigger footer */
+            color: #666; border-top: 3px solid #333; padding-top: 25px; 
+        }
+        .creator-link { text-decoration: none; color: #ff3333; font-weight: bold; transition: 0.3s; font-size: 18px; }
+        .creator-link:hover { text-shadow: 0 0 15px red; color: #ff6666; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header-row">
+        <h1>Baldur's Gate 3 Builder</h1>
+        <div style="display:flex; gap:10px; align-items:center;">
+            <button class="music-btn" onclick="togglePlay()" id="playBtn">▶ Initialize Music</button>
+            <div id="ytInput" style="display:none;">zSVRtM1x9wQ</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col">
+                <label>Race</label>
+                <select id="raceSelect" onchange="renderAll()"></select>
+                
+                <div id="subraceContainer" style="display:none;">
+                    <label>Subrace</label>
+                    <select id="subraceSelect" onchange="renderAll()"></select>
+                </div>
+            </div>
+
+            <div class="col">
+                <label>Class</label>
+                <select id="classSelect" onchange="renderAll()"></select>
+
+                <div id="subclassContainer" style="display:none;">
+                    <label>Subclass (Level 1)</label>
+                    <select id="subclassSelect" onchange="renderAll()"></select>
+                </div>
+            </div>
+
+            <div class="col">
+                <label>Background</label>
+                <select id="bgSelect" onchange="renderAll()"></select>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col-wide">
+                <label>Skills (Class + Background + Race)</label>
+                <div id="skillContainer" class="tag-container"></div>
+                <div id="skillMessage" style="font-size:14px; color:#cbb485; margin-top:10px; font-weight:bold;"></div>
+            </div>
+
+            <div class="col-wide">
+                <label>Class/Race Options</label>
+                <div id="optionsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="row">
+            <div class="col">
+                <h3 style="margin:0 0 15px 0; font-size:24px; color:#cbb485;">Ability Scores</h3>
+                <div style="font-size:18px; margin-bottom:15px; font-weight:bold;">Points: <span id="points-val" class="hl">27</span>/27</div>
+                <div id="stat-container"></div>
+                
+                <div style="margin-top:25px;">
+                    <label>Bonuses (+2 / +1)</label>
+                    <div style="display:flex; gap:15px;">
+                        <select id="bonusTwo" onchange="renderSummary()"></select>
+                        <select id="bonusOne" onchange="renderSummary()"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-wide" id="summary-panel">
+                <div class="summary-header" id="char-title">Character Name</div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="detail-item">HP: <span id="hp-val" class="hl" style="font-size:24px;"></span></div>
+                        <div class="detail-item">AC Estimate: <span id="ac-val" class="hl" style="font-size:24px;"></span></div>
+                        <div class="detail-item">Speed: <span id="speed-val"></span></div>
+                        <div class="detail-item">Initiative: <span id="init-val"></span></div>
+                    </div>
+                    <div class="col">
+                        <div class="detail-item">Vision: <span id="vision-val"></span></div>
+                        <div class="detail-item">Proficiency: <span class="hl">+2</span></div>
+                    </div>
+                </div>
+
+                <hr style="border:0; border-top:3px solid #444; margin:20px 0;">
+
+                <div class="detail-item"><strong>Proficient Skills:</strong> <span id="final-skills" style="color:#ccc;"></span></div>
+                <div class="detail-item"><strong>Saving Throws:</strong> <span id="final-saves" class="prof"></span></div>
+                <div class="detail-item"><strong>Features:</strong> <div id="final-features" style="font-size:16px; color:#aaa; margin-top:5px;"></div></div>
+                <div class="detail-item"><strong>Spells Known:</strong> <div id="final-spells" style="font-size:16px; color:#cbb485; margin-top:5px;"></div></div>
+                
+                <div id="final-stats-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(80px, 1fr)); gap:15px; margin-top:25px; text-align:center;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Tool Created By <a href="https://github.com/DataDestroyer-lab" target="_blank" class="creator-link">DataDestroyer-lab</a>
+    </div>
+</div>
+
+<div id="player" style="position:absolute; top:-9999px; left:-9999px;"></div>
+
+<script>
+    // --- DATASETS (WIKI ACCURATE) ---
+    const STATS = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+    const SKILLS = [
+        "Athletics", "Acrobatics", "Sleight of Hand", "Stealth", "Arcana", "History", "Investigation", 
+        "Nature", "Religion", "Animal Handling", "Insight", "Medicine", "Perception", "Survival", 
+        "Deception", "Intimidation", "Performance", "Persuasion"
+    ];
+    
+    // Simplified Spell Lists for Selector
+    const CANTRIPS_WIZ = ["Acid Splash", "Blade Ward", "Bone Chill", "Fire Bolt", "Friends", "Light", "Mage Hand", "Minor Illusion", "Poison Spray", "Ray of Frost", "Shocking Grasp", "True Strike"];
+    const CANTRIPS_CLR = ["Guidance", "Light", "Resistance", "Sacred Flame", "Thaumaturgy", "Blade Ward", "Produce Flame"];
+    const CANTRIPS_DRU = ["Guidance", "Poison Spray", "Produce Flame", "Resistance", "Shillelagh", "Thorn Whip"];
+    const CANTRIPS_BRD = ["Blade Ward", "Dancing Lights", "Friends", "Light", "Mage Hand", "Minor Illusion", "True Strike", "Vicious Mockery"];
+    const CANTRIPS_WAR = ["Eldritch Blast", "Blade Ward", "Bone Chill", "Friends", "Mage Hand", "Minor Illusion", "Poison Spray", "True Strike"];
+    const CANTRIPS_SOR = [...CANTRIPS_WIZ]; 
+
+    const SPELLS_L1_WIZ = ["Burning Hands", "Charm Person", "Chromatic Orb", "Color Spray", "Disguise Self", "Expeditious Retreat", "False Life", "Feather Fall", "Find Familiar", "Fog Cloud", "Grease", "Ice Knife", "Jump", "Longstrider", "Mage Armor", "Magic Missile", "Protection from Evil", "Ray of Sickness", "Shield", "Sleep", "Tasha's Hideous Laughter", "Thunderwave", "Witch Bolt"];
+
+    const RACES = {
+        "Human": { speed: "9m", features: ["Civil Militia", "Human Versatility"], extraSkill: true },
+        "Elf": { 
+            speed: "9m", features: ["Fey Ancestry", "Darkvision", "Keen Senses (Perception)"],
+            subraces: {
+                "High Elf": { cantrip: CANTRIPS_WIZ, feature: "Cantrip (INT)" },
+                "Wood Elf": { speed: "10.5m", features: ["Fleet of Foot", "Mask of the Wild (Stealth)"] }
+            }
+        },
+        "Drow": { 
+            speed: "9m", features: ["Fey Ancestry", "Superior Darkvision (24m)", "Sunlight Sensitivity", "Drow Magic (Dancing Lights)"],
+            subraces: { "Lolth-Sworn": {}, "Seldarine": {} }
+        },
+        "Half-Elf": { 
+            speed: "9m", features: ["Fey Ancestry", "Darkvision", "Civil Militia"],
+            subraces: {
+                "High Half-Elf": { cantrip: CANTRIPS_WIZ, feature: "Cantrip" },
+                "Wood Half-Elf": { speed: "10.5m", features: ["Fleet of Foot", "Mask of the Wild (Stealth)"] },
+                "Drow Half-Elf": { features: ["Drow Magic (Dancing Lights)"] }
+            }
+        },
+        "Half-Orc": { speed: "9m", features: ["Darkvision", "Relentless Endurance", "Savage Attacks", "Menacing (Intimidation)"] },
+        "Halfling": { 
+            speed: "7.5m", features: ["Lucky", "Brave"],
+            subraces: { "Lightfoot": { features: ["Naturally Stealthy"] }, "Strongheart": { features: ["Strongheart Resilience"] } }
+        },
+        "Dwarf": { 
+            speed: "7.5m", features: ["Darkvision", "Dwarven Resilience", "Combat Training"],
+            subraces: {
+                "Gold Dwarf": { features: ["Dwarven Toughness (+1 HP)"] },
+                "Shield Dwarf": { features: ["Armour Training (Medium)"] },
+                "Duergar": { features: ["Superior Darkvision", "Duergar Resilience"] }
+            }
+        },
+        "Gnome": { 
+            speed: "7.5m", features: ["Gnome Cunning", "Darkvision"],
+            subraces: { "Rock": { features: ["Artificer's Lore"] }, "Forest": { features: ["Speak with Animals"] }, "Deep": { features: ["Superior Darkvision", "Stone Camouflage"] } }
+        },
+        "Tiefling": { 
+            speed: "9m", features: ["Darkvision", "Hellish Resistance"],
+            subraces: {
+                "Asmodeus": { features: ["Produce Flame (Cantrip)"] },
+                "Mephistopheles": { features: ["Mage Hand (Cantrip)"] },
+                "Zariel": { features: ["Thaumaturgy (Cantrip)"] }
+            }
+        },
+        "Githyanki": { speed: "9m", features: ["Astral Knowledge", "Githyanki Psionics (Mage Hand)", "Martial Prodigy", "Armour Training (Medium)"] },
+        "Dragonborn": { speed: "9m", features: ["Draconic Ancestry (Breath & Resist)"], subraces: {"Red":{},"Green":{},"Blue":{},"Black":{},"White":{},"Gold":{},"Silver":{},"Bronze":{},"Copper":{},"Brass":{}} }
+    };
+
+    const CLASSES = {
+        "Barbarian": { hp: 12, save: ["STR", "CON"], skills: { count: 2, list: ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"] } },
+        "Bard": { hp: 8, save: ["DEX", "CHA"], skills: { count: 3, list: SKILLS }, cantrips: {count: 2, list: CANTRIPS_BRD}, spells: {count: 4, list: ["Healing Word", "Thunderwave", "Sleep", "Tasha's Hideous Laughter", "Charm Person", "Disguise Self", "Faerie Fire"]} },
+        "Cleric": { 
+            hp: 8, save: ["WIS", "CHA"], skills: { count: 2, list: ["History", "Insight", "Medicine", "Persuasion", "Religion"] },
+            cantrips: {count: 3, list: CANTRIPS_CLR},
+            subclasses: ["Life", "Light", "Trickery", "Knowledge", "Nature", "Tempest", "War"],
+            deity: true
+        },
+        "Druid": { hp: 8, save: ["INT", "WIS"], skills: { count: 2, list: ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"] }, cantrips: {count: 2, list: CANTRIPS_DRU}, spells: {count: 2, list: ["Entangle", "Goodberry", "Healing Word", "Thunderwave", "Speak with Animals"]} },
+        "Fighter": { hp: 10, save: ["STR", "CON"], skills: { count: 2, list: ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"] }, fightingStyle: true },
+        "Monk": { hp: 8, save: ["STR", "DEX"], skills: { count: 2, list: ["Acrobatics", "Athletics", "History", "Insight", "Religion", "Stealth"] } },
+        "Paladin": { 
+            hp: 10, save: ["WIS", "CHA"], skills: { count: 2, list: ["Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", "Religion"] },
+            subclasses: ["Oath of Ancients", "Oath of Devotion", "Oath of Vengeance"]
+        },
+        "Ranger": { hp: 10, save: ["STR", "DEX"], skills: { count: 3, list: ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"] }, favouredEnemy: true },
+        "Rogue": { hp: 8, save: ["DEX", "INT"], skills: { count: 4, list: ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"] } },
+        "Sorcerer": { 
+            hp: 6, save: ["CON", "CHA"], skills: { count: 2, list: ["Arcana", "Deception", "Insight", "Intimidation", "Persuasion", "Religion"] },
+            cantrips: {count: 4, list: CANTRIPS_SOR}, spells: {count: 2, list: SPELLS_L1_WIZ},
+            subclasses: ["Draconic Bloodline", "Wild Magic", "Storm Sorcery"]
+        },
+        "Warlock": { 
+            hp: 8, save: ["WIS", "CHA"], skills: { count: 2, list: ["Arcana", "Deception", "History", "Intimidation", "Investigation", "Nature", "Religion"] },
+            cantrips: {count: 2, list: CANTRIPS_WAR}, spells: {count: 2, list: ["Armour of Agathys", "Arms of Hadar", "Charm Person", "Expeditious Retreat", "Hellish Rebuke", "Hex", "Protection from Evil"]},
+            subclasses: ["The Fiend", "The Great Old One", "The Archfey"]
+        },
+        "Wizard": { 
+            hp: 6, save: ["INT", "WIS"], skills: { count: 2, list: ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"] },
+            cantrips: {count: 3, list: CANTRIPS_WIZ}, spells: {count: 6, list: SPELLS_L1_WIZ}
+        }
+    };
+
+    const BACKGROUNDS = {
+        "Acolyte": ["Insight", "Religion"], "Charlatan": ["Deception", "Sleight of Hand"], "Criminal": ["Deception", "Stealth"],
+        "Entertainer": ["Acrobatics", "Performance"], "Folk Hero": ["Animal Handling", "Survival"], "Guild Artisan": ["Insight", "Persuasion"],
+        "Noble": ["History", "Persuasion"], "Outlander": ["Athletics", "Survival"], "Sage": ["Arcana", "History"],
+        "Soldier": ["Athletics", "Intimidation"], "Urchin": ["Sleight of Hand", "Stealth"], "Haunted One": ["Medicine", "Intimidation"]
+    };
+
+    const DEITIES = ["Selûne", "Shar", "Mystra", "Tempus", "Tyr", "Helm", "Ilmater", "Kelemvor", "Oghma", "Corellon Larethian", "Moradin", "Yondalla", "Garl Glittergold", "Lolth", "Gruumsh", "Tiamat", "Bahamut", "Eilistraee", "Vlaakith"];
+    const FIGHTING_STYLES = ["Archery", "Defence", "Duelling", "Great Weapon Fighting", "Protection", "Two-Weapon Fighting"];
+
+    let state = {
+        stats: { STR: 8, DEX: 8, CON: 8, INT: 8, WIS: 8, CHA: 8 },
+        points: 27, selectedSkills: [], selectedCantrips: [], selectedSpells: [], extraSkill: "", highElfCantrip: "", fightingStyle: "", deity: "", favEnemy: ""
+    };
+
+    // --- INIT ---
+    function init() {
+        populateSelect("raceSelect", Object.keys(RACES));
+        populateSelect("classSelect", Object.keys(CLASSES));
+        populateSelect("bgSelect", Object.keys(BACKGROUNDS));
+        populateSelect("bonusTwo", STATS);
+        populateSelect("bonusOne", STATS);
+        document.getElementById("bonusOne").value = "DEX";
+
+        renderPointBuy();
+        renderAll();
+    }
+
+    function populateSelect(id, list) {
+        const sel = document.getElementById(id);
+        sel.innerHTML = "";
+        list.forEach(i => { let opt = document.createElement("option"); opt.value = i; opt.text = i; sel.add(opt); });
+    }
+
+    // --- CORE RENDER LOGIC ---
+    function renderAll() {
+        const raceName = document.getElementById("raceSelect").value;
+        const className = document.getElementById("classSelect").value;
+        const bgName = document.getElementById("bgSelect").value;
+        
+        const raceData = RACES[raceName];
+        const classData = CLASSES[className];
+        const bgSkills = BACKGROUNDS[bgName];
+
+        const subContainer = document.getElementById("subraceContainer");
+        const subSelect = document.getElementById("subraceSelect");
+        let subraceName = null;
+        
+        if (raceData.subraces) {
+            if (subContainer.style.display === "none") {
+                subContainer.style.display = "block";
+                subSelect.innerHTML = "";
+                Object.keys(raceData.subraces).forEach(s => { let opt = document.createElement("option"); opt.value = s; opt.text = s; subSelect.add(opt); });
+            }
+            subraceName = subSelect.value;
+        } else { subContainer.style.display = "none"; }
+
+        const subraceData = (subraceName && raceData.subraces) ? raceData.subraces[subraceName] : null;
+
+        const subclassContainer = document.getElementById("subclassContainer");
+        const subclassSelect = document.getElementById("subclassSelect");
+        let subclassName = null;
+
+        if (classData.subclasses) {
+            if (subclassContainer.style.display === "none") {
+                subclassContainer.style.display = "block";
+                subclassSelect.innerHTML = "";
+                classData.subclasses.forEach(s => { let opt = document.createElement("option"); opt.value = s; opt.text = s; subclassSelect.add(opt); });
+            }
+            subclassName = subclassSelect.value;
+        } else { subclassContainer.style.display = "none"; }
+
+        renderSkills(classData, bgSkills, raceData, subraceData);
+        renderOptions(classData, raceData, subraceData);
+        renderSummary();
+    }
+
+    function renderSkills(classData, bgSkills, raceData, subraceData) {
+        const container = document.getElementById("skillContainer");
+        container.innerHTML = "";
+        const msg = document.getElementById("skillMessage");
+        
+        let fixedSkills = [...bgSkills];
+        if (raceData.name === "Half-Orc") fixedSkills.push("Intimidation"); 
+        if (raceData.name === "Elf") fixedSkills.push("Perception");
+        if (subraceData && subraceData.features) { subraceData.features.forEach(f => { if (f.includes("Stealth")) fixedSkills.push("Stealth"); }); }
+        fixedSkills = [...new Set(fixedSkills)];
+
+        fixedSkills.forEach(s => {
+            let t = document.createElement("div"); t.className = "tag disabled"; t.innerText = s + " (Fixed)"; container.appendChild(t);
+        });
+
+        let available = classData.skills.list.filter(s => !fixedSkills.includes(s));
+        let maxChoices = classData.skills.count;
+        msg.innerText = `Choose ${maxChoices} skills from class list.`;
+
+        available.forEach(s => {
+            let t = document.createElement("div"); t.className = "tag"; t.innerText = s;
+            if (state.selectedSkills.includes(s)) t.classList.add("selected");
+            t.onclick = () => {
+                if (state.selectedSkills.includes(s)) { state.selectedSkills = state.selectedSkills.filter(x => x !== s); } 
+                else { if (state.selectedSkills.length < maxChoices) state.selectedSkills.push(s); }
+                renderAll();
+            };
+            container.appendChild(t);
+        });
+
+        if (raceData.extraSkill) {
+            let hr = document.createElement("div"); hr.style.width="100%"; hr.style.height="15px"; container.appendChild(hr);
+            let label = document.createElement("span"); label.style.fontSize="16px"; label.style.color="#cbb485"; label.innerText = "Human Versatility (Pick 1 Any): "; container.appendChild(label);
+            let sel = document.createElement("select"); sel.style.width="auto";
+            SKILLS.forEach(s => {
+                if (!fixedSkills.includes(s) && !state.selectedSkills.includes(s)) { let opt = document.createElement("option"); opt.value = s; opt.text = s; sel.add(opt); }
+            });
+            sel.value = state.extraSkill || sel.options[0].value;
+            sel.onchange = (e) => { state.extraSkill = e.target.value; renderSummary(); };
+            container.appendChild(sel);
+            if(!state.extraSkill && sel.options.length > 0) state.extraSkill = sel.options[0].value;
+        }
+    }
+
+    function renderOptions(classData, raceData, subraceData) {
+        const con = document.getElementById("optionsContainer"); con.innerHTML = "";
+        if (classData.deity) createDropdown(con, "Deity", DEITIES, state.deity, (v) => state.deity = v);
+        if (classData.fightingStyle) createDropdown(con, "Fighting Style", FIGHTING_STYLES, state.fightingStyle, (v) => state.fightingStyle = v);
+        if ((subraceData && subraceData.cantrip) || (raceData.cantrip)) createDropdown(con, "Race Cantrip (INT)", CANTRIPS_WIZ, state.highElfCantrip, (v) => state.highElfCantrip = v);
+        if (classData.cantrips) createMultiSelect(con, `Class Cantrips (Pick ${classData.cantrips.count})`, classData.cantrips.list, classData.cantrips.count, state.selectedCantrips);
+        if (classData.spells) createMultiSelect(con, `Level 1 Spells (Pick ${classData.spells.count})`, classData.spells.list, classData.spells.count, state.selectedSpells);
+    }
+
+    function createDropdown(parent, label, list, currentVal, callback) {
+        let l = document.createElement("label"); l.innerText = label;
+        let s = document.createElement("select");
+        list.forEach(i => { let opt = document.createElement("option"); opt.value = i; opt.text = i; s.add(opt); });
+        s.value = currentVal || list[0];
+        s.onchange = (e) => { callback(e.target.value); renderSummary(); };
+        parent.appendChild(l); parent.appendChild(s);
+        if (!currentVal) callback(list[0]);
+    }
+
+    function createMultiSelect(parent, label, list, max, targetArray) {
+        let l = document.createElement("label"); l.innerText = label;
+        let d = document.createElement("div"); d.className = "tag-container"; d.style.marginBottom = "25px";
+        list.forEach(item => {
+            let t = document.createElement("div"); t.className = "tag"; t.innerText = item;
+            if (targetArray.includes(item)) t.classList.add("selected");
+            t.onclick = () => {
+                if (targetArray.includes(item)) { let idx = targetArray.indexOf(item); if (idx > -1) targetArray.splice(idx, 1); } 
+                else { if (targetArray.length < max) targetArray.push(item); }
+                renderAll();
+            };
+            d.appendChild(t);
+        });
+        parent.appendChild(l); parent.appendChild(d);
+    }
+
+    // --- POINT BUY LOGIC ---
+    function modifyStat(stat, delta) {
+        const current = state.stats[stat];
+        const cost = (val, inc) => (inc ? (val >= 13 ? 2 : 1) : (val > 13 ? 2 : 1));
+        if (delta === 1) {
+            if (current >= 15) return;
+            let c = cost(current, true); if (state.points >= c) { state.stats[stat]++; state.points -= c; }
+        } else {
+            if (current <= 8) return;
+            let c = cost(current, false); state.stats[stat]--; state.points += c;
+        }
+        renderPointBuy(); renderSummary();
+    }
+
+    function renderPointBuy() {
+        const con = document.getElementById("stat-container"); con.innerHTML = "";
+        STATS.forEach(stat => {
+            let val = state.stats[stat]; let mod = Math.floor((val - 10) / 2);
+            let row = document.createElement("div"); row.className = "stat-row";
+            row.innerHTML = `<span>${stat}</span><button class="btn-stat" onclick="modifyStat('${stat}', -1)">-</button><span class="stat-val">${val}</span><button class="btn-stat" onclick="modifyStat('${stat}', 1)">+</button><span>${mod>=0?"+"+mod:mod}</span>`;
+            con.appendChild(row);
+        });
+        document.getElementById("points-val").innerText = state.points;
+    }
+
+    // --- SUMMARY ---
+    function renderSummary() {
+        const raceName = document.getElementById("raceSelect").value; const className = document.getElementById("classSelect").value;
+        const subraceName = document.getElementById("subraceSelect").value; const subclassName = document.getElementById("subclassSelect").value;
+        const raceData = RACES[raceName]; const classData = CLASSES[className];
+        const subraceData = (raceData.subraces && subraceName) ? raceData.subraces[subraceName] : null;
+
+        let finalStats = { ...state.stats }; finalStats[document.getElementById("bonusTwo").value] += 2; finalStats[document.getElementById("bonusOne").value] += 1;
+        let conMod = Math.floor((finalStats.CON - 10) / 2); let hp = classData.hp + conMod;
+        if (subraceName && subraceName.includes("Gold Dwarf")) hp += 1; if (raceData.features.includes("Dwarven Toughness")) hp += 1;
+        let dexMod = Math.floor((finalStats.DEX - 10) / 2); let ac = 10 + dexMod;
+        if (className === "Barbarian") ac += Math.floor((finalStats.CON - 10) / 2); if (className === "Monk") ac += Math.floor((finalStats.WIS - 10) / 2); if (className === "Draconic Bloodline") ac = 13 + dexMod;
+
+        let speed = (subraceData && subraceData.speed) ? subraceData.speed : raceData.speed;
+        let vision = "Normal"; if (raceData.features.some(f => f.includes("Darkvision"))) vision = "Darkvision"; if (subraceData && subraceData.features && subraceData.features.some(f => f.includes("Superior"))) vision = "Superior Darkvision";
+
+        document.getElementById("char-title").innerText = `${subraceName || raceName} ${className} ${subclassName ? '('+subclassName+')' : ''}`;
+        document.getElementById("hp-val").innerText = hp; document.getElementById("ac-val").innerText = ac; document.getElementById("speed-val").innerText = speed; document.getElementById("vision-val").innerText = vision; document.getElementById("init-val").innerText = (dexMod >= 0 ? "+" : "") + dexMod;
+
+        let feats = [...raceData.features]; if (subraceData && subraceData.features) feats = feats.concat(subraceData.features);
+        if (state.fightingStyle) feats.push(`Fighting Style: ${state.fightingStyle}`); if (state.deity) feats.push(`Deity: ${state.deity}`);
+        document.getElementById("final-features").innerText = feats.join(", ");
+
+        let bgSkills = BACKGROUNDS[document.getElementById("bgSelect").value]; let allSkills = [...bgSkills, ...state.selectedSkills];
+        if (state.extraSkill) allSkills.push(state.extraSkill); if (raceName === "Half-Orc") allSkills.push("Intimidation"); if (raceName === "Elf") allSkills.push("Perception"); if (subraceName && subraceName.includes("Wood")) allSkills.push("Stealth");
+        document.getElementById("final-skills").innerText = [...new Set(allSkills)].join(", ");
+
+        let spellText = []; if (state.highElfCantrip) spellText.push(state.highElfCantrip + " (Race)"); if (state.selectedCantrips.length) spellText.push("Cantrips: " + state.selectedCantrips.join(", ")); if (state.selectedSpells.length) spellText.push("Lvl 1: " + state.selectedSpells.join(", "));
+        document.getElementById("final-spells").innerText = spellText.join(" | ");
+        document.getElementById("final-saves").innerText = classData.save.join(", ");
+
+        const grid = document.getElementById("final-stats-grid"); grid.innerHTML = "";
+        STATS.forEach(s => {
+            let v = finalStats[s]; let m = Math.floor((v - 10) / 2);
+            let d = document.createElement("div"); d.style.background = "#222"; d.style.padding="15px"; d.style.border="2px solid #555"; d.style.borderRadius="4px";
+            d.innerHTML = `<div style="color:#aaa; font-size:14px; font-weight:bold;">${s}</div><div style="font-size:28px; color:#fff; font-weight:bold; margin:5px 0;">${v}</div><div style="font-size:18px; color:#cbb485; font-weight:bold;">${m>=0?"+"+m:m}</div>`;
+            grid.appendChild(d);
+        });
+    }
+
+    // --- MUSIC ---
+    var tag = document.createElement('script'); tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0]; firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var player; var isPlaying = false;
+    function onYouTubeIframeAPIReady() { player = new YT.Player('player', { height: '1', width: '1', videoId: 'zSVRtM1x9wQ', playerVars: { 'playsinline': 1, 'loop': 1, 'playlist': 'zSVRtM1x9wQ' } }); }
+    function togglePlay() { if(!player) return; if(isPlaying) { player.pauseVideo(); document.getElementById("playBtn").classList.remove("music-active"); isPlaying = false; } else { player.unMute(); player.setVolume(100); player.playVideo(); document.getElementById("playBtn").classList.add("music-active"); isPlaying = true; } }
+
+    init();
+</script>
+</body>
+</html>
