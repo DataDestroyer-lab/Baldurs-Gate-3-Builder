@@ -1,6 +1,7 @@
 # Baldurs-Gate-3-Builder# Baldur's Gate 3 Builder - Wiki Accurate Edition
 
 **A comprehensive, single-file HTML character builder for Baldur's Gate 3.**
+<img width="1134" height="1126" alt="Screenshot 2025-12-24 015445" src="https://github.com/user-attachments/assets/62b36346-cc9a-4cd9-9522-de655c1267ce" />
 
 This tool allows players to plan their Level 1 characters with 100% wiki-accurate data, including all races, subraces, classes, subclasses, backgrounds, and point-buy stats. It features a high-contrast, large-print UI for accessibility and includes an embedded music player for immersion.
 
