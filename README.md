@@ -6,7 +6,6 @@ This tool allows players to plan their Level 1 characters with 100% wiki-accurat
 
 ## 🔗 Live Demo
 [**Click here to use the Builder**](https://datadestroyer-lab.github.io/Baldurs-Gate-3-Builder/)  
-*(Note: Replace the link above with your actual GitHub Pages URL once uploaded)*
 
 ## ✨ Features
 
